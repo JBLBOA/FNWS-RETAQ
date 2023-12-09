@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-110,
+				-450
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "IDLEBEFE"
+		},
+		{
+			"offsets": [
+				-81,
+				-436
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "LEFTBEFE"
+		},
+		{
+			"offsets": [
+				-135,
+				-477
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "DOWNBEFE"
+		},
+		{
+			"offsets": [
+				-110,
+				-430
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "UPBEFE"
+		},
+		{
+			"offsets": [
+				-140,
+				-456
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "RIGHTBEFE"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/BEFEOU",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "befeou",
+	"flip_x": true,
+	"healthbar_colors": [
+		0,
+		162,
+		232
+	],
+	"camera_position": [
+		-430,
+		350
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}
