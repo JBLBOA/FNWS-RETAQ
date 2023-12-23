@@ -178,8 +178,22 @@ class PlayState extends MusicBeatState
 	public var combo:Int = 0;
 
 	public var healthBar:HealthBar;
-	public var timeBar:HealthBar;
+	//public var timeBar:HealthBar;
+	public var timeBar:FlxSprite;
+
 	var songPercent:Float = 0;
+
+	var playerhealth:Int = 5;
+	var enemigohealth:Int = 5;
+
+	//SPRITES PLAYER
+	var barraPLAYER:FlxSprite;
+
+	var healtPLAYER:FlxSprite;
+	//SPRITES ENEMIGO
+	var barraENEMIGO:FlxSprite;
+	
+	var healtENEMIGO:FlxSprite;
 
 	public var ratingsData:Array<Rating> = Rating.loadDefault();
 	public var fullComboFunction:Void->Void = null;
@@ -466,7 +480,7 @@ class PlayState extends MusicBeatState
 
 		Conductor.songPosition = -5000 / Conductor.songPosition;
 		var showTime:Bool = (ClientPrefs.data.timeBarType != 'Disabled');
-		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
+		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 500, 400, "", 32);
 		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
@@ -527,19 +541,7 @@ class PlayState extends MusicBeatState
 		healthBar.visible = !ClientPrefs.data.hideHud;
 		healthBar.alpha = ClientPrefs.data.healthBarAlpha;
 		reloadHealthBarColors();
-		add(healthBar);
-
-		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
-		iconP1.y = healthBar.y - 75;
-		iconP1.visible = !ClientPrefs.data.hideHud;
-		iconP1.alpha = ClientPrefs.data.healthBarAlpha;
-		add(iconP1);
-
-		iconP2 = new HealthIcon(dad.healthIcon, false);
-		iconP2.y = healthBar.y - 75;
-		iconP2.visible = !ClientPrefs.data.hideHud;
-		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
-		add(iconP2);
+		//add(healthBar);
 
 		scoreTxt = new FlxText(0, healthBar.y + 40, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -557,6 +559,67 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.data.downScroll) {
 			botplayTxt.y = timeBar.y - 78;
 		}
+		//LO CODIE DE LA MIERDA NO ME CRITIQUES FB WAAAAAAAAAAAAAAAA
+
+		var xHealtPLAYER:Int = 793;
+		var yHealtPLAYER:Int = 624;
+
+		var xHealtENEMIGO:Int = 110;
+		var yHealtENEMIGO:Int = 617;
+
+		healtPLAYER = new FlxSprite(xHealtPLAYER, yHealtPLAYER);
+		healtPLAYER.scale.x = 0.8;
+		healtPLAYER.scale.y = 0.8;
+		healtPLAYER.frames = Paths.getSparrowAtlas('HUDNEW/health/jugador/vida');
+		healtPLAYER.animation.addByPrefix('5', "5", 24);
+		healtPLAYER.animation.addByPrefix('4', "4", 24);
+		healtPLAYER.animation.addByPrefix('3', "3", 24);
+		healtPLAYER.animation.addByPrefix('2', "2", 24);
+		healtPLAYER.animation.addByPrefix('1', "1", 24);
+		healtPLAYER.animation.play(Std.string(playerhealth));
+		add(healtPLAYER);
+
+		barraPLAYER = new FlxSprite(750, 430).loadGraphic(Paths.image('HUDNEW/BARRADEVIDAJGDR'));
+		barraPLAYER.scale.x = 0.8;
+		barraPLAYER.scale.y = 0.8;
+		add(barraPLAYER);
+
+		healtENEMIGO = new FlxSprite(xHealtENEMIGO, yHealtENEMIGO);
+		healtENEMIGO.scale.x = 0.8;
+		healtENEMIGO.scale.y = 0.8;
+		healtENEMIGO.frames = Paths.getSparrowAtlas('HUDNEW/health/enemigo/vida');
+		healtENEMIGO.animation.addByPrefix('5', "5", 24);
+		healtENEMIGO.animation.addByPrefix('4', "4", 24);
+		healtENEMIGO.animation.addByPrefix('3', "3", 24);
+		healtENEMIGO.animation.addByPrefix('2', "2", 24);
+		healtENEMIGO.animation.addByPrefix('1', "1", 24);
+		healtENEMIGO.animation.play(Std.string(enemigohealth));
+		add(healtENEMIGO);
+
+		barraENEMIGO = new FlxSprite(-50, 455).loadGraphic(Paths.image('HUDNEW/BARRAVIDAENMG'));
+		barraENEMIGO.scale.x = 0.8;
+		barraENEMIGO.scale.y = 0.8;
+		add(barraENEMIGO);
+
+		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
+		iconP1.y = healthBar.y - 95;
+		iconP1.x = 1110;
+		iconP1.visible = !ClientPrefs.data.hideHud;
+		iconP1.alpha = ClientPrefs.data.healthBarAlpha;
+		add(iconP1);
+
+		iconP2 = new HealthIcon(dad.healthIcon, false);
+		iconP2.y = healthBar.y - 95;
+		iconP2.x = 20;
+		iconP2.visible = !ClientPrefs.data.hideHud;
+		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
+		add(iconP2);
+
+		barraPLAYER.cameras = [camHUD];
+		barraENEMIGO.cameras = [camHUD];
+		healtENEMIGO.cameras = [camHUD];
+		healtPLAYER.cameras = [camHUD];
+
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -1595,6 +1658,9 @@ class PlayState extends MusicBeatState
 		}*/
 		callOnScripts('onUpdate', [elapsed]);
 
+		healtENEMIGO.animation.play(Std.string(enemigohealth));
+		healtPLAYER.animation.play(Std.string(playerhealth));
+
 		FlxG.camera.followLerp = 0;
 		if(!inCutscene && !paused) {
 			FlxG.camera.followLerp = FlxMath.bound(elapsed * 2.4 * cameraSpeed * playbackRate / (FlxG.updateFramerate / 60), 0, 1);
@@ -1638,11 +1704,13 @@ class PlayState extends MusicBeatState
 		iconP2.updateHitbox();
 
 		var iconOffset:Int = 26;
-		if (health > 2) health = 2;
-		iconP1.x = healthBar.barCenter + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
-		iconP2.x = healthBar.barCenter - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
-		iconP1.animation.curAnim.curFrame = (healthBar.percent < 20) ? 1 : 0;
-		iconP2.animation.curAnim.curFrame = (healthBar.percent > 80) ? 1 : 0;
+		if (playerhealth < 3)
+		iconP1.animation.curAnim.curFrame = 1;
+		iconP2.animation.curAnim.curFrame = 0;
+
+		if (enemigohealth > 3)
+		iconP1.animation.curAnim.curFrame = 0;
+		iconP2.animation.curAnim.curFrame = 1;
 
 		if (controls.justPressed('debug_2') && !endingSong && !inCutscene)
 			openCharacterEditor();
@@ -1686,6 +1754,7 @@ class PlayState extends MusicBeatState
 		if (!ClientPrefs.data.noReset && controls.RESET && canReset && !inCutscene && startedCountdown && !endingSong)
 		{
 			health = 0;
+			playerhealth = 0;
 			trace("RESET = True");
 		}
 		doDeathCheck();
@@ -1855,7 +1924,7 @@ class PlayState extends MusicBeatState
 
 	public var isDead:Bool = false; //Don't mess with this on Lua!!!
 	function doDeathCheck(?skipHealthCheck:Bool = false) {
-		if (((skipHealthCheck && instakillOnMiss) || health <= 0) && !practiceMode && !isDead)
+		if (((skipHealthCheck && instakillOnMiss) || playerhealth <= 0) && !practiceMode && !isDead)
 		{
 			var ret:Dynamic = callOnScripts('onGameOver', null, true);
 			if(ret != FunkinLua.Function_Stop) {
@@ -2797,6 +2866,13 @@ class PlayState extends MusicBeatState
 		if(note != null) subtract = note.missHealth;
 		health -= subtract * healthLoss;
 
+		playerhealth -= 1;
+
+		if (enemigohealth < 5)
+			{
+				enemigohealth += 1;
+			}
+
 		if(instakillOnMiss)
 		{
 			vocals.volume = 0;
@@ -2827,6 +2903,7 @@ class PlayState extends MusicBeatState
 				gf.specialAnim = true;
 			}
 		}
+
 		vocals.volume = 0;
 	}
 
@@ -2881,6 +2958,16 @@ class PlayState extends MusicBeatState
 
 	function goodNoteHit(note:Note):Void
 	{
+		if (playerhealth < 5)
+			{
+				playerhealth += 1;
+			}
+
+		if (enemigohealth > 0)
+			{
+				enemigohealth -= 1;
+			}
+
 		if (!note.wasGoodHit)
 		{
 			if(cpuControlled && (note.ignoreNote || note.hitCausesMiss)) return;

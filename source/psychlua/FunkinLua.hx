@@ -1163,9 +1163,9 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "setHealthBarColors", function(left:String, right:String) {
 			game.healthBar.setColors(CoolUtil.colorFromString(left), CoolUtil.colorFromString(right));
 		});
-		Lua_helper.add_callback(lua, "setTimeBarColors", function(left:String, right:String) {
+		/*Lua_helper.add_callback(lua, "setTimeBarColors", function(left:String, right:String) {
 			game.timeBar.setColors(CoolUtil.colorFromString(left), CoolUtil.colorFromString(right));
-		});
+		});*/
 
 		Lua_helper.add_callback(lua, "setObjectCamera", function(obj:String, camera:String = '') {
 			var real = game.getLuaObject(obj);
