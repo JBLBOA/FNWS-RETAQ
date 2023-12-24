@@ -4,6 +4,7 @@ import haxe.Timer;
 import openfl.events.Event;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
+import openfl.text.Font;
 #if gl_stats
 import openfl.display._internal.stats.Context3DStats;
 import openfl.display._internal.stats.DrawCallContext;
@@ -39,13 +40,17 @@ class FPS extends TextField
 	{
 		super();
 
+		var font:Font = Font.fromFile(Paths.font('comic.ttf'));
+		font.fontName = '_comicsans';
+		Font.registerFont(font);
+
 		this.x = x;
 		this.y = y;
 
 		currentFPS = 0;
 		selectable = false;
 		mouseEnabled = false;
-		defaultTextFormat = new TextFormat("_sans", 14, color);
+		defaultTextFormat = new TextFormat("_comicsans", 16, color);
 		autoSize = LEFT;
 		multiline = true;
 		text = "FPS: ";

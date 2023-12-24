@@ -10,9 +10,8 @@ import objects.Character;
 
 enum Countdown
 {
-	THREE;
-	TWO;
-	ONE;
+	READY;
+	SET;
 	GO;
 	START;
 }
