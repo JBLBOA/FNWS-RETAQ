@@ -14,6 +14,9 @@ import objects.AchievementPopup;
 import states.editors.MasterEditorMenu;
 import options.OptionsState;
 
+import substates.Galeria;
+
+import flixel.addons.display.FlxBackdrop;
 class MainMenuState extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '0.7.1h'; //This is also used for Discord RPC
@@ -22,6 +25,8 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
+
+	var versionFNWS:String = "rizzmas";
 	
 	var optionShit:Array<String> = [
 		'story_mode',
@@ -32,6 +37,19 @@ class MainMenuState extends MusicBeatState
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
+
+	var storymenu:FlxSprite;
+	var codes:FlxSprite;
+	var archivements:FlxSprite;
+	var extras:FlxSprite;
+	var freeplay:FlxSprite;
+	var galery:FlxSprite;
+	var options:FlxSprite;
+	var credits:FlxSprite;
+
+	var notyet:FlxSprite;
+	var youtube:FlxSprite;
+	var twitter:FlxSprite;
 
 	override function create()
 	{
@@ -59,13 +77,106 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('mainmenu/newmenu/bg'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
-		bg.scrollFactor.set(0, yScroll);
+		bg.scrollFactor.set(0, 0);
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
 		bg.screenCenter();
 		add(bg);
+
+		var soniBG:FlxBackdrop = new FlxBackdrop(Paths.image('mainmenu/newmenu/sonigrid'));
+		soniBG.scrollFactor.set();
+		soniBG.velocity.set(-10, -20);
+		soniBG.velocity.x = -120;
+		add(soniBG);
+
+		var scale:Float = 0.7;
+
+		var sonicentro:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('mainmenu/newmenu/sonicentro'));
+		sonicentro.antialiasing = ClientPrefs.data.antialiasing;
+		sonicentro.scrollFactor.set(0, 0);
+		sonicentro.scale.x = scale;
+		sonicentro.scale.y = scale;
+		sonicentro.updateHitbox();
+		sonicentro.screenCenter();
+		add(sonicentro);
+
+		storymenu = new FlxSprite(0, 150);
+		storymenu.scrollFactor.set(0, 0);
+		storymenu.scale.x = scale;
+		storymenu.scale.y = scale;
+		storymenu.frames = Paths.getSparrowAtlas('mainmenu/newmenu/menufnws');
+		storymenu.animation.addByPrefix('idle', "story_modeSELECTED", 24);
+		storymenu.animation.addByPrefix('selected', "story_modeUNSELECTED", 24);
+		storymenu.animation.play('idle');
+		storymenu.updateHitbox();
+		//add(storymenu);
+
+		notyet = new FlxSprite(-150, -70).loadGraphic(Paths.image("mainmenu/newmenu/notyet"));
+		notyet.scrollFactor.set(0, 0);
+		notyet.scale.x = scale;
+		notyet.scale.y = scale;
+		add(notyet);
+
+		freeplay = new FlxSprite(800, 155);
+		freeplay.scrollFactor.set(0, 0);
+		freeplay.scale.x = scale;
+		freeplay.scale.y = scale;
+		freeplay.frames = Paths.getSparrowAtlas('mainmenu/newmenu/menufnws');
+		freeplay.animation.addByPrefix('idle', "freeplayUNSELECTED", 24);
+		freeplay.animation.play('idle');
+		freeplay.updateHitbox();
+		add(freeplay);
+
+		galery = new FlxSprite(freeplay.x + 90, freeplay.y + 130);
+		galery.scrollFactor.set(0, 0);
+		galery.scale.x = scale;
+		galery.scale.y = scale;
+		galery.frames = Paths.getSparrowAtlas('mainmenu/newmenu/menufnws');
+		galery.animation.addByPrefix('idle', "galeryUNSELECTED", 24);
+		galery.animation.play('idle');
+		galery.updateHitbox();
+		add(galery);
+
+		options = new FlxSprite(freeplay.x + 63, freeplay.y + 245);
+		options.scrollFactor.set(0, 0);
+		options.scale.x = scale;
+		options.scale.y = scale;
+		options.frames = Paths.getSparrowAtlas('mainmenu/newmenu/menufnws');
+		options.animation.addByPrefix('idle', "optionsUNSELECTED", 24);
+		options.animation.play('idle');
+		options.updateHitbox();
+		add(options);
+
+		credits = new FlxSprite(800, 480);
+		credits.scrollFactor.set(0, 0);
+		credits.scale.x = scale;
+		credits.scale.y = scale;
+		credits.frames = Paths.getSparrowAtlas('mainmenu/newmenu/menufnws');
+		credits.animation.addByPrefix('idle', "creditsUNSELECTED", 24);
+		credits.animation.play('idle');
+		credits.updateHitbox();
+		add(credits);
+
+		var cosoas:FlxBackdrop = new FlxBackdrop(Paths.image('mainmenu/newmenu/coso'));
+		cosoas.scrollFactor.set();
+		cosoas.velocity.set(-10, 0);
+		cosoas.velocity.x = -120;
+		cosoas.setGraphicSize(Std.int(cosoas.width), Std.int(cosoas.height - 250));
+		add(cosoas);
+		
+		youtube = new FlxSprite(1050, 600).loadGraphic(Paths.image("mainmenu/newmenu/youtube"));
+		youtube.scrollFactor.set(0, 0);
+		youtube.scale.x = scale + 0.2;
+		youtube.scale.y = scale + 0.2;
+		add(youtube);
+		
+		twitter = new FlxSprite(1150, 600).loadGraphic(Paths.image("mainmenu/newmenu/twitter"));
+		twitter.scrollFactor.set(0, 0);
+		twitter.scale.x = scale + 0.2;
+		twitter.scale.y = scale + 0.2;
+		add(twitter);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
@@ -103,7 +214,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
 			menuItem.screenCenter(X);
-			menuItems.add(menuItem);
+			//menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
 			menuItem.scrollFactor.set(0, scr);
@@ -116,11 +227,11 @@ class MainMenuState extends MusicBeatState
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
+		//add(versionShit);
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
+		//add(versionShit);
 
 		// NG.core.calls.event.logEvent('swag').send();
 
@@ -155,6 +266,8 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		FlxG.mouse.visible = true;
+
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * elapsed;
@@ -162,9 +275,97 @@ class MainMenuState extends MusicBeatState
 		}
 		FlxG.camera.followLerp = FlxMath.bound(elapsed * 9 / (FlxG.updateFramerate / 60), 0, 1);
 
+		var selecionado:Bool = false;
+
+		if (!selecionado)
+			{
+				if (FlxG.mouse.overlaps(youtube) && FlxG.mouse.justPressed)
+					{
+						CoolUtil.browserLoad('https://www.youtube.com/@CHORIZINGAMING');
+					}
+
+				if (FlxG.mouse.overlaps(twitter) && FlxG.mouse.justPressed)
+					{
+						CoolUtil.browserLoad('https://twitter.com/FNWSretaq');
+					}
+
+				if (FlxG.mouse.overlaps(freeplay))
+					{
+						//FlxG.sound.play(Paths.sound('scrollMenu'), 1, false, null, true);
+						if (FlxG.mouse.justPressed)
+							{
+								selecionado = true;
+
+								FlxG.sound.play(Paths.sound('confirmMenu'));
+		
+								FlxFlicker.flicker(freeplay, 1, 0.05, false);
+				
+								new FlxTimer().start(0.5, function(tmr:FlxTimer)
+									{
+										MusicBeatState.switchState(new FreeplayState());
+									});
+							}
+					}	
+
+				if (FlxG.mouse.overlaps(galery))
+					{
+						//FlxG.sound.play(Paths.sound('scrollMenu'), 1, false, null, true);
+						if (FlxG.mouse.justPressed)
+							{
+								selecionado = true;
+								
+								FlxG.sound.play(Paths.sound('confirmMenu'));
+		
+								FlxFlicker.flicker(galery, 1, 0.05, false);
+				
+								new FlxTimer().start(0.5, function(tmr:FlxTimer)
+									{
+										openSubState(new Galeria());
+									});
+							}
+					}
+
+				if (FlxG.mouse.overlaps(options))
+					{
+						//FlxG.sound.play(Paths.sound('scrollMenu'), 1, false, null, true);
+						if (FlxG.mouse.justPressed)
+							{
+								selecionado = true;
+								
+								FlxG.sound.play(Paths.sound('confirmMenu'));
+			
+								FlxFlicker.flicker(options, 1, 0.05, false);
+					
+								new FlxTimer().start(0.5, function(tmr:FlxTimer)
+									{
+										MusicBeatState.switchState(new OptionsState());
+									});
+							}
+					}
+
+
+				if (FlxG.mouse.overlaps(credits))
+					{
+						//FlxG.sound.play(Paths.sound('scrollMenu'), 1, false, null, true);
+						if (FlxG.mouse.justPressed)
+							{
+								selecionado = true;
+								
+								FlxG.sound.play(Paths.sound('confirmMenu'));
+				
+								FlxFlicker.flicker(credits, 1, 0.05, false);
+					
+								new FlxTimer().start(0.5, function(tmr:FlxTimer)
+									{
+										MusicBeatState.switchState(new CreditsState());
+									});
+							}
+					}
+			}
+
 		if (!selectedSomethin)
 		{
-			if (controls.UI_UP_P)
+			/*if (controls.UI_UP_P)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(-1);
@@ -174,14 +375,14 @@ class MainMenuState extends MusicBeatState
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(1);
-			}
+			}*/
 
 			if (controls.BACK)
 			{
 				selectedSomethin = true;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				MusicBeatState.switchState(new TitleState());
-			}
+			}/*
 
 			if (controls.ACCEPT)
 			{
@@ -241,7 +442,7 @@ class MainMenuState extends MusicBeatState
 						}
 					});
 				}
-			}
+			}*/
 			#if desktop
 			else if (controls.justPressed('debug_1'))
 			{
