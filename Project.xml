@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="FREAKY NIGHT WITH SONI: RETAQ'" file="FNWS" packageName="com.soni.fnws" package="com.soni.fnws" main="Main" version="0.2.8" company="Soniers" />
+	<app title="FREAKY NIGHT WITH SONI: RETAQ' (RIZZMAS PREVIEW)" file="FNWS" packageName="com.soni.cp" package="com.soni.cp" main="Main" version="0.2.8" company="LOS SONIERS" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
