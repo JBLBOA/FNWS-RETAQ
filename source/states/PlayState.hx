@@ -480,7 +480,7 @@ class PlayState extends MusicBeatState
 
 		Conductor.songPosition = -5000 / Conductor.songPosition;
 		var showTime:Bool = (ClientPrefs.data.timeBarType != 'Disabled');
-		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 500, 400, "", 32);
+		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 630, 400, "", 32);
 		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
@@ -495,7 +495,7 @@ class PlayState extends MusicBeatState
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
 		add(timeBar);
-		add(timeTxt);
+		//add(timeTxt);
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
@@ -543,13 +543,6 @@ class PlayState extends MusicBeatState
 		reloadHealthBarColors();
 		//add(healthBar);
 
-		scoreTxt = new FlxText(0, healthBar.y + 40, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		scoreTxt.scrollFactor.set();
-		scoreTxt.borderSize = 1.25;
-		scoreTxt.visible = !ClientPrefs.data.hideHud;
-		add(scoreTxt);
-
 		botplayTxt = new FlxText(400, timeBar.y + 55, FlxG.width - 800, "BOTPLAY", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
@@ -578,6 +571,13 @@ class PlayState extends MusicBeatState
 		healtPLAYER.animation.addByPrefix('1', "1", 24);
 		healtPLAYER.animation.play(Std.string(playerhealth));
 		add(healtPLAYER);
+
+		scoreTxt = new FlxText(healtPLAYER.x - 450, healtPLAYER.y - 60, FlxG.width, "", 20);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.scrollFactor.set();
+		scoreTxt.borderSize = 1.25;
+		scoreTxt.visible = !ClientPrefs.data.hideHud;
+		add(scoreTxt);
 
 		barraPLAYER = new FlxSprite(750, 430).loadGraphic(Paths.image('HUDNEW/BARRADEVIDAJGDR'));
 		barraPLAYER.scale.x = 0.8;
@@ -1195,8 +1195,8 @@ class PlayState extends MusicBeatState
 		}
 
 		scoreTxt.text = 'Score: ' + songScore
-		+ ' | Misses: ' + songMisses
-		+ ' | Rating: ' + str;
+		+ '\n Misses: ' + songMisses
+		+ '\n' + str;
 
 		if(ClientPrefs.data.scoreZoom && !miss && !cpuControlled)
 		{
@@ -1704,13 +1704,16 @@ class PlayState extends MusicBeatState
 		iconP2.updateHitbox();
 
 		var iconOffset:Int = 26;
+
 		if (playerhealth < 3)
 		iconP1.animation.curAnim.curFrame = 1;
-		iconP2.animation.curAnim.curFrame = 0;
+		else
+		iconP1.animation.curAnim.curFrame = 0;	
 
-		if (enemigohealth > 3)
-		iconP1.animation.curAnim.curFrame = 0;
+		if (enemigohealth < 3)
 		iconP2.animation.curAnim.curFrame = 1;
+		else
+		iconP2.animation.curAnim.curFrame = 0;
 
 		if (controls.justPressed('debug_2') && !endingSong && !inCutscene)
 			openCharacterEditor();

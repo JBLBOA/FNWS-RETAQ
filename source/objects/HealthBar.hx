@@ -17,10 +17,10 @@ class HealthBar extends FlxSpriteGroup
 	// you might need to change this if you want to use a custom bar
 	public var barWidth(default, set):Int = 1;
 	public var barHeight(default, set):Int = 1;
-	public var barOffset:FlxPoint = new FlxPoint(15, 9);
+	public var barOffset:FlxPoint = new FlxPoint(10, 9);
 
 
-	var barXSIZE:Int = 300;
+	var barXSIZE:Int = 355;
 	var barYSIZE:Int = 70;
 
 	public function new(x:Float, y:Float, image:String = 'HUDNEW/BARRATIEMPO', valueFunction:Void->Float = null, boundX:Float = 0, boundY:Float = 1)
@@ -32,8 +32,8 @@ class HealthBar extends FlxSpriteGroup
 		
 		bg = new FlxSprite().loadGraphic(Paths.image("HUDNEW/BARRATIEMPO"));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
-		bg.scale.x = 0.6;
-		bg.scale.y = 0.6;
+		bg.scale.x = 0.5;
+		bg.scale.y = 0.5;
 		barWidth = Std.int(bg.width - 6);
 		barHeight = Std.int(bg.height - 6);
 
@@ -71,8 +71,8 @@ class HealthBar extends FlxSpriteGroup
 
 	public function updateBar()
 	{
-		var xBAR:Int = 150;
-		var yBAR:Int = 20;
+		var xBAR:Int = 170;
+		var yBAR:Int = 45;
 
 		if(leftBar == null || rightBar == null) return;
 
