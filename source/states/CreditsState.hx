@@ -44,6 +44,22 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var defaultList:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
+			["FNWS RETAQ' TEAM"],
+			['JP13 XD', 'jotape', 'Director, Animator, Artist', 'https://twitter.com/XdJp13', '3c3ea0'],
+			['Drawe', 'drawebos', 'CREATOR OF SONI CHARACTER', 'https://www.youtube.com/@Drawebos', 'd5b900'],
+			['elfb34', 'febe', 'Main Coder', 'https://twitter.com/elfb344', 'd5d5d5'],
+			['Fabri.flp', 'fabripuntofelepeequisde', 'Composer', 'https://www.youtube.com/channel/UC6CeFoIEf9PA-Wtewg81FRQ', '1ca836'],
+			['Nightmare Tube', 'gordobondiola', 'Composer', 'https://twitter.com/EsoNaimer', '803651'],
+			['Roberto The Coder', 'robertothecoderfemboy', 'Coder', 'https://twitter.com/RobertoTheCoder', 'd5d5d5'],
+			['Pando', 'pando', 'Artist', 'https://x.com/_Elpando_', '479384'],
+			['srwhite', 'srwhite', 'Artist', 'https://twitter.com/Srwhiteoficial', 'd5d5d5'],
+			['Launixio', 'launi', 'Artist', 'https://twitter.com/Launixio', 'b3874f'],
+			['Plage', 'plage', 'Artist', 'https://twitter.com/plagedark', '267cbf'],
+			['4cent', '4cent', 'Artist', 'https://twitter.com/fvkevngel_', 'cca690'],
+			['zohcul', 'socool', 'Charter', 'https://twitter.com/zohcul', '2672bf'],
+			['WillyXD', 'willyxd', 'Charter', 'https://twitter.com/_WILLYXD', 'cbbb46'],
+			['bani', 'toonbani', "Artist (Some Gallery Art and elfb34's Icon :3)", 'https://x.com/Bananahre', 'd5d5d5'],
+			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',								'https://twitter.com/Shadow_Mario_',	'444444'],
 			['Riveren',				'riveren',			'Main Artist/Animator of Psych Engine',							'https://twitter.com/riverennn',		'B42F71'],

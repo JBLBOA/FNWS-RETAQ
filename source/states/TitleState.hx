@@ -1,5 +1,7 @@
 package states;
 
+import lime.app.Application;
+import flixel.animation.FlxAnimationController;
 import backend.WeekData;
 import backend.Highscore;
 
@@ -73,6 +75,8 @@ class TitleState extends MusicBeatState
 	var titleJSON:TitleData;
 
 	public static var updateVersion:String = '';
+	
+	var initText:String = "Friday Night Funkin': Psych Engine";
 
 	override public function create():Void
 	{
@@ -188,7 +192,6 @@ class TitleState extends MusicBeatState
 	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
-	var swagShader:ColorSwap = null;
 
 	function startIntro()
 	{
@@ -225,7 +228,6 @@ class TitleState extends MusicBeatState
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
-		if(ClientPrefs.data.shaders) swagShader = new ColorSwap();
 		gfDance = new FlxSprite(titleJSON.gfx, titleJSON.gfy);
 		gfDance.antialiasing = ClientPrefs.data.antialiasing;
 
@@ -265,11 +267,6 @@ class TitleState extends MusicBeatState
 
 		add(gfDance);
 		add(logoBl);
-		if(swagShader != null)
-		{
-			gfDance.shader = swagShader.shader;
-			logoBl.shader = swagShader.shader;
-		}
 
 		titleText = new FlxSprite(titleJSON.startx, titleJSON.starty);
 		titleText.frames = Paths.getSparrowAtlas('titleEnter');
@@ -420,84 +417,41 @@ class TitleState extends MusicBeatState
 				
 				if(titleText != null) titleText.animation.play('press');
 
-				FlxG.camera.flash(ClientPrefs.data.flashing ? FlxColor.WHITE : 0x4CFFFFFF, 1);
+				//FlxG.camera.flash(ClientPrefs.data.flashing ? FlxColor.WHITE : 0x4CFFFFFF, 1);
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+
+				titleText.acceleration.y = FlxG.random.float(620, 680);
+				titleText.angularAcceleration = FlxG.random.float(-70, 70);
+				logoBl.acceleration.y = FlxG.random.float(620, 680);
+				logoBl.angularAcceleration = FlxG.random.float(-70, 70);
+				gfDance.acceleration.y = FlxG.random.float(620, 680);
+				gfDance.angularAcceleration = FlxG.random.float(-70, 70);
+
+				FlxTween.num(0, initText.length, 1.75, {ease: FlxEase.quadIn}, (num:Float) -> {
+					Application.current.window.title = initText.substring(Std.int(num), initText.length);
+				});
+
+				FlxTween.tween(FlxG.sound.music, {pitch: 0}, 1.75, {ease: FlxEase.quadIn, onComplete: (twn:FlxTween) -> {
+					add(blackScreen);
+					FlxTween.tween(blackScreen, {alpha: 1}, 0.5, {ease: FlxEase.quadIn});
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						FlxTransitionableState.skipNextTransOut = true;
+						MusicBeatState.switchState(new MainMenuState(true));
+						closedState = true;
+					});
+				}});
+				FlxTween.tween(FlxAnimationController, {globalSpeed: 0}, 1.75, {ease: FlxEase.quadIn});
 
 				transitioning = true;
 				// FlxG.sound.music.stop();
-
-				new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
-					if (mustUpdate) {
-						MusicBeatState.switchState(new OutdatedState());
-					} else {
-						MusicBeatState.switchState(new MainMenuState());
-					}
-					closedState = true;
-				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 			}
-			#if TITLE_SCREEN_EASTER_EGG
-			else if (FlxG.keys.firstJustPressed() != FlxKey.NONE)
-			{
-				var keyPressed:FlxKey = FlxG.keys.firstJustPressed();
-				var keyName:String = Std.string(keyPressed);
-				if(allowedKeys.contains(keyName)) {
-					easterEggKeysBuffer += keyName;
-					if(easterEggKeysBuffer.length >= 32) easterEggKeysBuffer = easterEggKeysBuffer.substring(1);
-					//trace('Test! Allowed Key pressed!!! Buffer: ' + easterEggKeysBuffer);
-
-					for (wordRaw in easterEggKeys)
-					{
-						var word:String = wordRaw.toUpperCase(); //just for being sure you're doing it right
-						if (easterEggKeysBuffer.contains(word))
-						{
-							//trace('YOOO! ' + word);
-							if (FlxG.save.data.psychDevsEasterEgg == word)
-								FlxG.save.data.psychDevsEasterEgg = '';
-							else
-								FlxG.save.data.psychDevsEasterEgg = word;
-							FlxG.save.flush();
-
-							FlxG.sound.play(Paths.sound('ToggleJingle'));
-
-							var black:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-							black.alpha = 0;
-							add(black);
-
-							FlxTween.tween(black, {alpha: 1}, 1, {onComplete:
-								function(twn:FlxTween) {
-									FlxTransitionableState.skipNextTransIn = true;
-									FlxTransitionableState.skipNextTransOut = true;
-									MusicBeatState.switchState(new TitleState());
-								}
-							});
-							FlxG.sound.music.fadeOut();
-							if(FreeplayState.vocals != null)
-							{
-								FreeplayState.vocals.fadeOut();
-							}
-							closedState = true;
-							transitioning = true;
-							playJingle = true;
-							easterEggKeysBuffer = '';
-							break;
-						}
-					}
-				}
-			}
-			#end
 		}
 
 		if (initialized && pressedEnter && !skippedIntro)
 		{
 			skipIntro();
-		}
-
-		if(swagShader != null)
-		{
-			if(controls.UI_LEFT) swagShader.hue -= elapsed * 0.1;
-			if(controls.UI_RIGHT) swagShader.hue += elapsed * 0.1;
 		}
 
 		super.update(elapsed);
@@ -611,14 +565,15 @@ class TitleState extends MusicBeatState
 				// credTextShit.visible = false;
 				// credTextShit.text = "Friday";
 				// credTextShit.screenCenter();
+					addMoreText('?????');
 				case 14:
-					addMoreText('Friday');
+					addMoreText('?????');
 				// credTextShit.visible = true;
 				case 15:
-					addMoreText('Night');
+					addMoreText('????');
 				// credTextShit.text += '\nNight';
 				case 16:
-					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+					addMoreText('????'); // credTextShit.text += '\nFunkin';
 
 				case 17:
 					skipIntro();
@@ -632,81 +587,33 @@ class TitleState extends MusicBeatState
 	{
 		if (!skippedIntro)
 		{
-			if (playJingle) //Ignore deez
+			remove(ngSpr);
+			remove(credGroup);
+			FlxG.camera.flash(FlxColor.WHITE, 4);
+			Application.current.window.title = initText;
+			
+			var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
+			if (easteregg == null) easteregg = '';
+			easteregg = easteregg.toUpperCase();
+			#if TITLE_SCREEN_EASTER_EGG
+			if(easteregg == 'SHADOW')
 			{
-				var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
-				if (easteregg == null) easteregg = '';
-				easteregg = easteregg.toUpperCase();
-
-				var sound:FlxSound = null;
-				switch(easteregg)
+				FlxG.sound.music.fadeOut();
+				if(FreeplayState.vocals != null)
 				{
-					case 'RIVER':
-						sound = FlxG.sound.play(Paths.sound('JingleRiver'));
-					case 'SHUBS':
-						sound = FlxG.sound.play(Paths.sound('JingleShubs'));
-					case 'SHADOW':
-						FlxG.sound.play(Paths.sound('JingleShadow'));
-					case 'BBPANZU':
-						sound = FlxG.sound.play(Paths.sound('JingleBB'));
-
-					default: //Go back to normal ugly ass boring GF
-						remove(ngSpr);
-						remove(credGroup);
-						FlxG.camera.flash(FlxColor.WHITE, 2);
-						skippedIntro = true;
-						playJingle = false;
-
-						FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-						FlxG.sound.music.fadeIn(4, 0, 0.7);
-						return;
+					FreeplayState.vocals.fadeOut();
 				}
-
-				transitioning = true;
-				if(easteregg == 'SHADOW')
-				{
-					new FlxTimer().start(3.2, function(tmr:FlxTimer)
-					{
-						remove(ngSpr);
-						remove(credGroup);
-						FlxG.camera.flash(FlxColor.WHITE, 0.6);
-						transitioning = false;
-					});
-				}
-				else
-				{
-					remove(ngSpr);
-					remove(credGroup);
-					FlxG.camera.flash(FlxColor.WHITE, 3);
-					sound.onComplete = function() {
-						FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-						FlxG.sound.music.fadeIn(4, 0, 0.7);
-						transitioning = false;
-					};
-				}
-				playJingle = false;
 			}
-			else //Default! Edit this one!!
-			{
-				remove(ngSpr);
-				remove(credGroup);
-				FlxG.camera.flash(FlxColor.WHITE, 4);
-
-				var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
-				if (easteregg == null) easteregg = '';
-				easteregg = easteregg.toUpperCase();
-				#if TITLE_SCREEN_EASTER_EGG
-				if(easteregg == 'SHADOW')
-				{
-					FlxG.sound.music.fadeOut();
-					if(FreeplayState.vocals != null)
-					{
-						FreeplayState.vocals.fadeOut();
-					}
-				}
-				#end
-			}
+			#end
 			skippedIntro = true;
 		}
+	}
+
+	override function destroy()
+	{
+		//FlxAnimationController.globalSpeed = 1;
+		//FlxG.sound.music.pitch = 1;
+
+		super.destroy();
 	}
 }

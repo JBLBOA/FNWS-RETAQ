@@ -1,8 +1,8 @@
 {
 	"songs": [
 		[
-			"ou",
-			"shadowOU",
+			"rizzmas",
+			"soni",
 			[
 				10,
 				10,
@@ -27,6 +27,6 @@
 		253
 	],
 	"hideStoryMode": true,
-	"weekBefore": "tutorial",
+	"weekBefore": "",
 	"startUnlocked": true
 }

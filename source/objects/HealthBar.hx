@@ -17,31 +17,25 @@ class HealthBar extends FlxSpriteGroup
 	// you might need to change this if you want to use a custom bar
 	public var barWidth(default, set):Int = 1;
 	public var barHeight(default, set):Int = 1;
-	public var barOffset:FlxPoint = new FlxPoint(10, 9);
+	public var barOffset:FlxPoint = new FlxPoint(3, 3);
 
-
-	var barXSIZE:Int = 355;
-	var barYSIZE:Int = 70;
-
-	public function new(x:Float, y:Float, image:String = 'HUDNEW/BARRATIEMPO', valueFunction:Void->Float = null, boundX:Float = 0, boundY:Float = 1)
+	public function new(x:Float, y:Float, image:String = 'healthBar', valueFunction:Void->Float = null, boundX:Float = 0, boundY:Float = 1)
 	{
 		super(x, y);
 		
 		if(valueFunction != null) this.valueFunction = valueFunction;
 		setBounds(boundX, boundY);
 		
-		bg = new FlxSprite().loadGraphic(Paths.image("HUDNEW/BARRATIEMPO"));
+		bg = new FlxSprite().loadGraphic(Paths.image(image));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
-		bg.scale.x = 0.5;
-		bg.scale.y = 0.5;
 		barWidth = Std.int(bg.width - 6);
 		barHeight = Std.int(bg.height - 6);
 
-		leftBar = new FlxSprite().makeGraphic(Std.int(bg.width - barXSIZE), Std.int(bg.height - barYSIZE), FlxColor.WHITE);
+		leftBar = new FlxSprite().makeGraphic(Std.int(bg.width), Std.int(bg.height), FlxColor.WHITE);
 		//leftBar.color = FlxColor.WHITE;
 		leftBar.antialiasing = antialiasing = ClientPrefs.data.antialiasing;
 
-		rightBar = new FlxSprite().makeGraphic(Std.int(bg.width - barXSIZE), Std.int(bg.height - barYSIZE), FlxColor.WHITE);
+		rightBar = new FlxSprite().makeGraphic(Std.int(bg.width), Std.int(bg.height), FlxColor.WHITE);
 		rightBar.color = FlxColor.BLACK;
 		rightBar.antialiasing = ClientPrefs.data.antialiasing;
 
@@ -71,13 +65,10 @@ class HealthBar extends FlxSpriteGroup
 
 	public function updateBar()
 	{
-		var xBAR:Int = 170;
-		var yBAR:Int = 45;
-
 		if(leftBar == null || rightBar == null) return;
 
-		leftBar.setPosition(bg.x + xBAR, bg.y + yBAR);
-		rightBar.setPosition(bg.x + xBAR, bg.y + yBAR);
+		leftBar.setPosition(bg.x, bg.y);
+		rightBar.setPosition(bg.x, bg.y);
 
 		var leftSize:Float = 0;
 		if(leftToRight) leftSize = FlxMath.lerp(0, barWidth, percent / 100);
@@ -104,15 +95,15 @@ class HealthBar extends FlxSpriteGroup
 	{
 		if(leftBar != null)
 		{
-			leftBar.setGraphicSize(Std.int(bg.width - barXSIZE), Std.int(bg.height - barYSIZE));
+			leftBar.setGraphicSize(Std.int(bg.width), Std.int(bg.height));
 			leftBar.updateHitbox();
-			leftBar.clipRect = new FlxRect(0, 0, Std.int(bg.width - barXSIZE), Std.int(bg.height - barYSIZE));
+			leftBar.clipRect = new FlxRect(0, 0, Std.int(bg.width), Std.int(bg.height));
 		}
 		if(rightBar != null)
 		{
-			rightBar.setGraphicSize(Std.int(bg.width - barXSIZE), Std.int(bg.height - barYSIZE));
+			rightBar.setGraphicSize(Std.int(bg.width), Std.int(bg.height));
 			rightBar.updateHitbox();
-			rightBar.clipRect = new FlxRect(0, 0, Std.int(bg.width - barXSIZE), Std.int(bg.height - barYSIZE));
+			rightBar.clipRect = new FlxRect(0, 0, Std.int(bg.width), Std.int(bg.height));
 		}
 		updateBar();
 	}

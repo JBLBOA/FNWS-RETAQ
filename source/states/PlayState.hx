@@ -163,6 +163,8 @@ class PlayState extends MusicBeatState
 	public var camFollow:FlxObject;
 	private static var prevCamFollow:FlxObject;
 
+	var banderasGroup:FlxTypedGroup<FlxSprite>;
+
 	public var strumLineNotes:FlxTypedGroup<StrumNote>;
 	public var opponentStrums:FlxTypedGroup<StrumNote>;
 	public var playerStrums:FlxTypedGroup<StrumNote>;
@@ -178,8 +180,8 @@ class PlayState extends MusicBeatState
 	public var combo:Int = 0;
 
 	public var healthBar:HealthBar;
-	//public var timeBar:HealthBar;
-	public var timeBar:FlxSprite;
+	public var timeBar:HealthBar;
+	//public var timeBar:FlxSprite;
 
 	var songPercent:Float = 0;
 
@@ -191,7 +193,7 @@ class PlayState extends MusicBeatState
 
 	var healtPLAYER:FlxSprite;
 	//SPRITES ENEMIGO
-	var barraENEMIGO:FlxSprite;
+	public var barraENEMIGO:FlxSprite;
 	
 	var healtENEMIGO:FlxSprite;
 
@@ -398,6 +400,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'stage': new states.stages.StageWeek1(); //Week 1
 			case 'ou': new states.stages.Ou(); //ou
+			case 'rizzmas': new states.stages.Rizzmas(); //rizz sigma ohio skibidi funkin
 		}
 
 		if(isPixelStage) {
@@ -481,18 +484,31 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.data.downScroll) timeTxt.y = FlxG.height - 44;
 		if(ClientPrefs.data.timeBarType == 'Song Name') timeTxt.text = SONG.song;
 
-		timeBar = new HealthBar(0, 40, 'timeBar', function() return songPercent, 0, 1);
-		timeBar.leftBar.color = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
+		timeBar = new HealthBar(0, 3, 'timeBar', function() return songPercent, 0, 1);
+		timeBar.barWidth = 653;
+		timeBar.barHeight = 29;
+		timeBar.leftBar.loadGraphic(Paths.image('barTime'));
+		timeBar.rightBar.loadGraphic(Paths.image('barTime'));
+		timeBar.leftBar.offset.set(-13, -33);
+		timeBar.rightBar.offset.copyFrom(timeBar.leftBar.offset);
+		timeBar.barOffset.set();
+		//timeBar.barOffset.x = 13;
+		//timeBar.barOffset.y = 32;
+		//timeBar.barOffset.set(13, 32);
+		//timeBar.barWidth = 653;
+		//timeBar.barHeight = 29;
+		/*timeBar.leftBar.color = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);*/
 		timeBar.scrollFactor.set();
 		timeBar.screenCenter(X);
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
-		timeBar.barOffset.set(6, 6);
-		timeBar.barWidth = Std.int(timeBar.bg.width - 12);
-		timeBar.barHeight = Std.int(timeBar.bg.height - 12);
-		if(ClientPrefs.data.downScroll) timeBar.y = FlxG.height - 44 - timeBar.height/2;
+		//if(ClientPrefs.data.downScroll) timeBar.y = FlxG.height - 44 - timeBar.height/2;
+		//timeBar.scale.set(0.5, 0.5);
 		add(timeBar);
 		//add(timeTxt);
+
+		banderasGroup = new FlxTypedGroup<FlxSprite>();
+		add(banderasGroup);
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
@@ -574,21 +590,24 @@ class PlayState extends MusicBeatState
 		}
 		//LO CODIE DE LA MIERDA NO ME CRITIQUES FB WAAAAAAAAAAAAAAAA
 
+		// HOLA SOY ELFB CRITICAS Y HOY VENGO A CRITICAR A ESTE NIÑATO DE ROBERTO THE CODER FEMBOY
+
 		var xHealtPLAYER:Int = 793;
-		var yHealtPLAYER:Int = 624;
+		var yHealtPLAYER:Int = 617;
 
 		var xHealtENEMIGO:Int = 110;
 		var yHealtENEMIGO:Int = 617;
 
 		healtPLAYER = new FlxSprite(xHealtPLAYER, yHealtPLAYER);
+		healtPLAYER.antialiasing = ClientPrefs.data.antialiasing;
 		healtPLAYER.scale.x = 0.8;
 		healtPLAYER.scale.y = 0.8;
 		healtPLAYER.frames = Paths.getSparrowAtlas('HUDNEW/health/jugador/vida');
-		healtPLAYER.animation.addByPrefix('5', "5", 24);
-		healtPLAYER.animation.addByPrefix('4', "4", 24);
-		healtPLAYER.animation.addByPrefix('3', "3", 24);
-		healtPLAYER.animation.addByPrefix('2', "2", 24);
-		healtPLAYER.animation.addByPrefix('1', "1", 24);
+		healtPLAYER.animation.addByPrefix('5', "5", 0);
+		healtPLAYER.animation.addByPrefix('4', "4", 0);
+		healtPLAYER.animation.addByPrefix('3', "3", 0);
+		healtPLAYER.animation.addByPrefix('2', "2", 0);
+		healtPLAYER.animation.addByPrefix('1', "1", 0);
 		healtPLAYER.animation.play(Std.string(playerhealth));
 		add(healtPLAYER);
 
@@ -599,38 +618,41 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.data.hideHud;
 		add(scoreTxt);
 
-		barraPLAYER = new FlxSprite(750, 430).loadGraphic(Paths.image('HUDNEW/BARRADEVIDAJGDR'));
+		barraPLAYER = new FlxSprite(750, 430-7).loadGraphic(Paths.image('HUDNEW/BARRADEVIDAJGDR'));
+		barraPLAYER.antialiasing = ClientPrefs.data.antialiasing;
 		barraPLAYER.scale.x = 0.8;
 		barraPLAYER.scale.y = 0.8;
 		add(barraPLAYER);
 
 		healtENEMIGO = new FlxSprite(xHealtENEMIGO, yHealtENEMIGO);
+		healtENEMIGO.antialiasing = ClientPrefs.data.antialiasing;
 		healtENEMIGO.scale.x = 0.8;
 		healtENEMIGO.scale.y = 0.8;
 		healtENEMIGO.frames = Paths.getSparrowAtlas('HUDNEW/health/enemigo/vida');
-		healtENEMIGO.animation.addByPrefix('5', "5", 24);
-		healtENEMIGO.animation.addByPrefix('4', "4", 24);
-		healtENEMIGO.animation.addByPrefix('3', "3", 24);
-		healtENEMIGO.animation.addByPrefix('2', "2", 24);
-		healtENEMIGO.animation.addByPrefix('1', "1", 24);
+		healtENEMIGO.animation.addByPrefix('5', "5", 0);
+		healtENEMIGO.animation.addByPrefix('4', "4", 0);
+		healtENEMIGO.animation.addByPrefix('3', "3", 0);
+		healtENEMIGO.animation.addByPrefix('2', "2", 0);
+		healtENEMIGO.animation.addByPrefix('1', "1", 0);
 		healtENEMIGO.animation.play(Std.string(enemigohealth));
 		add(healtENEMIGO);
 
 		barraENEMIGO = new FlxSprite(-50, 455).loadGraphic(Paths.image('HUDNEW/BARRAVIDAENMG'));
+		barraENEMIGO.antialiasing = ClientPrefs.data.antialiasing;
 		barraENEMIGO.scale.x = 0.8;
 		barraENEMIGO.scale.y = 0.8;
 		add(barraENEMIGO);
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
-		iconP1.y = healthBar.y - 95;
-		iconP1.x = 1110;
+		iconP1.y = barraPLAYER.y+110;
+		iconP1.x = 1105;
 		iconP1.visible = !ClientPrefs.data.hideHud;
 		iconP1.alpha = ClientPrefs.data.healthBarAlpha;
 		add(iconP1);
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
-		iconP2.y = healthBar.y - 95;
-		iconP2.x = 20;
+		iconP2.y = barraENEMIGO.y+80;
+		iconP2.x = -625;
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
 		add(iconP2);
@@ -644,7 +666,6 @@ class PlayState extends MusicBeatState
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 
-		healthBar.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
@@ -792,8 +813,8 @@ class PlayState extends MusicBeatState
 	}*/
 
 	public function reloadHealthBarColors() {
-		healthBar.setColors(FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]),
-			FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]));
+		/*healthBar.setColors(FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]),
+			FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]));*/
 	}
 
 	public function addCharacterToList(newCharacter:String, type:Int) {
@@ -1291,16 +1312,18 @@ class PlayState extends MusicBeatState
 		{
 			var banderas:objects.BanderasParser = new objects.BanderasParser(Assets.getText(Paths.json(Paths.formatToSongPath(SONG.song)+'/banderas')));
 
-			for (barStep in banderas.banderas)
+			for (barTime in banderas.banderas)
 			{
 				//var barStep:Float = 500;
-				var bandera:FlxSprite = new FlxSprite(timeBar.x + timeBar.barOffset.x + (((barStep*Conductor.stepCrochet)/songLength)*timeBar.barWidth), timeBar.y+timeBar.bg.height-2).loadGraphic(Paths.image('bandera'));
-				bandera.offset.set(3, 68);
+				var bandera:FlxSprite = new FlxSprite((timeBar.x - timeBar.leftBar.offset.x) + (((barTime*1000)/songLength)*timeBar.barWidth)).loadGraphic(Paths.image('bandera'));
+				bandera.antialiasing = ClientPrefs.data.antialiasing;
+				bandera.y = timeBar.y+timeBar.bg.height-bandera.height-3;
+				bandera.offset.x = 29;
 				bandera.cameras = [camHUD];
 				bandera.alpha = 0;
-				insert(members.indexOf(timeBar)+1, bandera);
+				banderasGroup.add(bandera);
 
-				trace((((barStep*Conductor.stepCrochet)/songLength)*timeBar.barWidth));
+				trace(bandera.x+', '+bandera.y);
 				FlxTween.tween(bandera, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 			}
 		}
@@ -1312,6 +1335,7 @@ class PlayState extends MusicBeatState
 		// Updating Discord Rich Presence (with Time Left)
 		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength);
 		#end
+		stagesFunc(function(stage:BaseStage) stage.onSongStart());
 		/*setOnScripts('songLength', songLength);
 		callOnScripts('onSongStart');*/
 	}
@@ -1733,8 +1757,10 @@ class PlayState extends MusicBeatState
 			//}
 		}
 
+		#if debug
 		if (controls.justPressed('debug_1') && !endingSong && !inCutscene)
 			openChartEditor();
+		#end
 
 		var mult:Float = FlxMath.lerp(1, iconP1.scale.x, FlxMath.bound(1 - (elapsed * 9 * playbackRate), 0, 1));
 		iconP1.scale.set(mult, mult);
@@ -1756,8 +1782,10 @@ class PlayState extends MusicBeatState
 		else
 		iconP2.animation.curAnim.curFrame = 0;
 
+		#if debug
 		if (controls.justPressed('debug_2') && !endingSong && !inCutscene)
 			openCharacterEditor();
+		#end
 		
 		if (startedCountdown && !paused)
 			Conductor.songPosition += FlxG.elapsed * 1000 * playbackRate;
@@ -2902,7 +2930,7 @@ class PlayState extends MusicBeatState
 		FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
 		//callOnScripts('noteMissPress', [direction]);
 	}
-
+	var missCounter:Int = 0;
 	function noteMissCommon(direction:Int, note:Note = null)
 	{
 		// score and data
@@ -2910,18 +2938,19 @@ class PlayState extends MusicBeatState
 		if(note != null) subtract = note.missHealth;
 		health -= subtract * healthLoss;
 
-		playerhealth -= 1;
+		missCounter += 1;
 
-		if (enemigohealth < 5)
-			{
-				enemigohealth += 1;
-			}
+		if (missCounter > 1) {
+			playerhealth -= 1;
+			if (enemigohealth < 5) enemigohealth += 1;
+			missCounter = 0;
+		}
 
-		if(instakillOnMiss)
-		{
+		if(instakillOnMiss) {
 			vocals.volume = 0;
 			doDeathCheck(true);
 		}
+
 		combo = 0;
 
 		if(!practiceMode) songScore -= 10;
@@ -2989,6 +3018,8 @@ class PlayState extends MusicBeatState
 		strumPlayAnim(true, Std.int(Math.abs(note.noteData)), Conductor.stepCrochet * 1.25 / 1000 / playbackRate);
 		note.hitByOpponent = true;
 
+		stagesFunc(function(stage:BaseStage) stage.onOpponentNoteHit(note));
+
 		/*var result:Dynamic = callOnLuas('opponentNoteHit', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
 		if(result != FunkinLua.Function_Stop && result != FunkinLua.Function_StopHScript && result != FunkinLua.Function_StopAll) callOnHScript('opponentNoteHit', [note]);*/
 
@@ -3002,15 +3033,13 @@ class PlayState extends MusicBeatState
 
 	function goodNoteHit(note:Note):Void
 	{
-		if (playerhealth < 5)
-			{
-				playerhealth += 1;
-			}
+		missCounter = 0;
 
-		if (enemigohealth > 0)
-			{
-				enemigohealth -= 1;
-			}
+		if (playerhealth < 5)
+			playerhealth += 1;
+
+		if (enemigohealth > 1)
+			enemigohealth -= 1;
 
 		if (!note.wasGoodHit)
 		{
