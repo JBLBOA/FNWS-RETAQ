@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="weones.png">
+	<!-- Created with Adobe Animate version 22.0.7.214 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="weones0000" x="1" y="1" width="171" height="130"/>
+	<SubTexture name="weones0001" x="173" y="1" width="171" height="130"/>
+	<SubTexture name="weones0002" x="1" y="132" width="171" height="130"/>
+</TextureAtlas>
