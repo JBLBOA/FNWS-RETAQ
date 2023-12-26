@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="VIEJO.png">
+	<!-- Created with Adobe Animate version 19.2.1.408 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="JOJO0000" x="2" y="2" width="216" height="353" frameX="-23" frameY="0" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0001" x="2" y="2" width="216" height="353" frameX="-23" frameY="0" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0002" x="221" y="2" width="223" height="347" frameX="-18" frameY="-7" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0003" x="221" y="2" width="223" height="347" frameX="-18" frameY="-7" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0004" x="447" y="2" width="259" height="302" frameX="0" frameY="-52" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0005" x="447" y="2" width="259" height="302" frameX="0" frameY="-52" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0006" x="709" y="2" width="243" height="322" frameX="-8" frameY="-32" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0007" x="709" y="2" width="243" height="322" frameX="-8" frameY="-32" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0008" x="709" y="2" width="243" height="322" frameX="-8" frameY="-32" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0009" x="709" y="2" width="243" height="322" frameX="-8" frameY="-32" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0010" x="709" y="2" width="243" height="322" frameX="-8" frameY="-32" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="JOJO0011" x="709" y="2" width="243" height="322" frameX="-8" frameY="-32" frameWidth="259" frameHeight="354"/>
+	<SubTexture name="VIEJODOWN0000" x="2" y="358" width="350" height="266" frameX="0" frameY="-10" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0001" x="2" y="358" width="350" height="266" frameX="0" frameY="-10" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0002" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0003" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0004" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0005" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0006" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0007" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0008" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0009" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0010" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0011" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0012" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJODOWN0013" x="355" y="358" width="322" height="277" frameX="-14" frameY="0" frameWidth="350" frameHeight="277"/>
+	<SubTexture name="VIEJOIDLE0000" x="680" y="358" width="328" height="282" frameX="-3" frameY="-24" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0001" x="680" y="358" width="328" height="282" frameX="-3" frameY="-24" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0002" x="2" y="643" width="335" height="274" frameX="0" frameY="-36" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0003" x="2" y="643" width="335" height="274" frameX="0" frameY="-36" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0004" x="340" y="643" width="280" height="306" frameX="-33" frameY="0" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0005" x="340" y="643" width="280" height="306" frameX="-33" frameY="0" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0006" x="623" y="643" width="292" height="300" frameX="-21" frameY="-6" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0007" x="623" y="643" width="292" height="300" frameX="-21" frameY="-6" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0008" x="623" y="643" width="292" height="300" frameX="-21" frameY="-6" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0009" x="623" y="643" width="292" height="300" frameX="-21" frameY="-6" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0010" x="623" y="643" width="292" height="300" frameX="-21" frameY="-6" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0011" x="623" y="643" width="292" height="300" frameX="-21" frameY="-6" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0012" x="2" y="952" width="292" height="301" frameX="-21" frameY="-6" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOIDLE0013" x="2" y="952" width="292" height="301" frameX="-21" frameY="-6" frameWidth="335" frameHeight="310"/>
+	<SubTexture name="VIEJOLEFT0000" x="297" y="952" width="285" height="302"/>
+	<SubTexture name="VIEJOLEFT0001" x="297" y="952" width="285" height="302"/>
+	<SubTexture name="VIEJOLEFT0002" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0003" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0004" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0005" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0006" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0007" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0008" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0009" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0010" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0011" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0012" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJOLEFT0013" x="585" y="952" width="263" height="301" frameX="-17" frameY="0" frameWidth="285" frameHeight="302"/>
+	<SubTexture name="VIEJORIGHT0000" x="2" y="1257" width="326" height="301" frameX="-2" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0001" x="2" y="1257" width="326" height="301" frameX="-2" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0002" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0003" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0004" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0005" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0006" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0007" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0008" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0009" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0010" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0011" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0012" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJORIGHT0013" x="331" y="1257" width="305" height="301" frameX="0" frameY="0" frameWidth="328" frameHeight="301"/>
+	<SubTexture name="VIEJOUP0000" x="639" y="1257" width="228" height="359" frameX="-18" frameY="0" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0001" x="639" y="1257" width="228" height="359" frameX="-18" frameY="0" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0002" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0003" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0004" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0005" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0006" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0007" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0008" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0009" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0010" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0011" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0012" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+	<SubTexture name="VIEJOUP0013" x="2" y="1619" width="264" height="345" frameX="0" frameY="-14" frameWidth="264" frameHeight="359"/>
+</TextureAtlas>

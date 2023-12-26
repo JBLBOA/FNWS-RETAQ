@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-40,
+				-310
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "CRICKIDLE"
+		},
+		{
+			"offsets": [
+				-95,
+				-290
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "CRICKLEFT"
+		},
+		{
+			"offsets": [
+				-73,
+				-303
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "CRICKDOWN"
+		},
+		{
+			"offsets": [
+				-96,
+				-277
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "CRICKUP"
+		},
+		{
+			"offsets": [
+				-138,
+				-306
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "CRICKRIGHT"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/CRICK",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "crick",
+	"flip_x": false,
+	"healthbar_colors": [
+		161,
+		161,
+		161
+	],
+	"camera_position": [
+		100,
+		330
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

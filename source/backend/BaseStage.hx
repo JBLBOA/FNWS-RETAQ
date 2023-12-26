@@ -1,5 +1,6 @@
 package backend;
 
+import objects.Note;
 import flixel.FlxBasic;
 import flixel.FlxObject;
 import flixel.FlxSubState;
@@ -44,6 +45,8 @@ class BaseStage extends FlxBasic
 	public var defaultCamZoom(get, set):Float;
 	public var camFollow(get, never):FlxObject;
 
+	public var antishit(get, never):Bool;
+
 	public function new()
 	{
 		this.game = MusicBeatState.getState();
@@ -75,6 +78,9 @@ class BaseStage extends FlxBasic
 	public function beatHit() {}
 	public function stepHit() {}
 	public function sectionHit() {}
+
+	public function onSongStart() {}
+	public function onOpponentNoteHit(note:Note) {}
 
 	// Substate close/open, for pausing Tweens/Timers
 	public function closeSubState() {}
@@ -184,4 +190,5 @@ class BaseStage extends FlxBasic
 		return game.defaultCamZoom;
 	}
 	inline private function get_camFollow():FlxObject return game.camFollow;
+	inline private function get_antishit():Bool return ClientPrefs.data.antialiasing;
 }

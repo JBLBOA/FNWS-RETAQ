@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="menufnws.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="archivementsUNSELECTED0000" x="0" y="0" width="502" height="112"/>
+	<SubTexture name="codesUNSELECTED0000" x="502" y="0" width="447" height="142"/>
+	<SubTexture name="creditsUNSELECTED0000" x="0" y="142" width="574" height="97"/>
+	<SubTexture name="freeplayUNSELECTED0000" x="0" y="239" width="583" height="197"/>
+	<SubTexture name="galeryUNSELECTED0000" x="0" y="436" width="455" height="156"/>
+	<SubTexture name="optionsUNSELECTED0000" x="455" y="436" width="498" height="112"/>
+	<SubTexture name="story_modeUNSELECTED0000" x="0" y="592" width="558" height="224"/>
+</TextureAtlas>
